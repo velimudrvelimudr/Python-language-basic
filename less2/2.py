@@ -26,8 +26,8 @@ while True:
 
 print("Исходный список:\n", '\n'.join(l))    
 
-for i in enumerate(l):
-    if i[0] % 2 == 1:
-        l.insert(i[0] - 1, l.pop(i[0]))
+for n, i in enumerate(l):
+    if n % 2 == 1:
+        l.insert(n - 1, l.pop(n))
 
 print("Преобразованный список:\n", '\n'.join(l))    
