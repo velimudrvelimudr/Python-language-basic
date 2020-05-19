@@ -13,10 +13,17 @@
 
 
 def chastnoye(x, y):
+    """Возвращает частное параметров.
+    
+    Позиционные параметры:
+    x, y: любые числа.
+    
+    """
     try:
         return x / y
     except ZeroDivisionError:
         print("Делить на нуль нельзя!") # Функция возвращает None.
+        return None
 
 def main():
     try:

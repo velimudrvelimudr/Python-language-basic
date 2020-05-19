@@ -13,6 +13,17 @@
 """
 
 def user_data(name, surname, birthday, city, email, phone):
+    """Принимает данные о пользователе и возвращает форматированную строку с ними.
+    
+    Обязательные именованные параметры:
+    name - Имя;
+    surname - фамилия;
+    birthday - Дата рождения в формате 'ДД.ММ.ГГГГГ';
+    city - Город проживания;
+    email - Электронная почта;
+    phone - Телефон.
+    
+    """
     return f'{name} {surname} родился {birthday} в городе {city}. Номер его телефона: {phone}, E-Mail: {email}.'
 
 def main():
