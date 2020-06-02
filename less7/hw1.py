@@ -32,10 +32,43 @@
 
 # Функции.
 
-def ():
+class Matrix:
+    def __init__(self, ex_matrix):
+        self.matrix = ex_matrix
+        """Я категорически (!!!) не понимаю, почему в экземпляр  передаётся сама переменная, а не её копия. Т.е., если 
+        изменить Matrix(l).matrix, то изменится и сама l (см. вывод). ex_matrix.copy() не помогает."""
+
+    def __str__(self):
+        total_string = ''
+        for rows in self.matrix:
+            for m_item in rows:
+                total_string += "\t" + str(m_item)
+            total_string += '\n'
+        return total_string.strip().replace('\n\t', '\n')
+
+
+    def __add__(self, other):
+        new_matrix = Matrix([])
+        for row in range(0, len(self.matrix)):
+            new_matrix.matrix.append([])
+            for cell in range(0, len(self.matrix[0])):
+                new_matrix.matrix[row].append(self.matrix[row][cell] + other[row][cell])
+        return new_matrix
+
 
 def main():
     """Логика программы."""
+    l1 = [[1, 2, 3], [4, 5, 6]]
+    print (l1, "\nИсходный список, который передаётся в экземпляр")
+    l2 = [[9, 8, 7], [6, 5, 4]]
+    print(l2, "\nСписок, участвующий в сложении")
+    mx = Matrix(l1)
+    print(mx, "\nвывод исходного экземпляра Matrix (__str__)")
+    mxsum = mx + l2
+    print(mxsum, "\nРезультат суммирования (__add__)")
+    mx.matrix[0][0] = 0
+    print("Матрица после изменения:\n", mx, "\nИсходный список после изменения матрицы:\n", l1, 
+          "\nПосле операции mx.matrix[0][0] = 0. l1 тоже изменилась.")
 
 
 if __name__ == '__main__':

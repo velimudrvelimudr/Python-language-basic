@@ -17,14 +17,38 @@
 """
 
 # Импорт
+import abc
 
 # Функции.
+class Odezhda(abc.ABC):
+    def __init__(self, x):
+        self.x = x
 
-def ():
+    @abc.abstractmethod
+    def get_matherial(self):
+        pass
+
+class Kostyum(Odezhda):
+    def __init__(self, h):
+        self.h = h
+    @property
+    def get_matherial(self):
+        return (2 * self.h + 0.3) 
+
+class Palto(Odezhda):
+    def __init__(self, v):
+        self.v = v
+
+    @property
+    def get_matherial(self):
+        return (self.v / 6.5 + 0.5)
 
 def main():
     """Логика программы."""
-
+    p = Palto(40)
+    print(round(p.get_matherial, 2))
+    k = Kostyum(1.86)
+    print(round(k.get_matherial, 2))
 
 if __name__ == '__main__':
     main()

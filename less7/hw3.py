@@ -27,15 +27,41 @@
 Подсказка: подробный список операторов для перегрузки доступен по ссылке.
 """
 
-# Импорт
-
 # Функции.
+class Kletka:
+    def __init__(self, cell_count):
+        self.cell_count = cell_count # Число ячеек в клетке задаётся при создании экземпляра.
 
-def ():
+    def __add__(self, othery):
+        return Kletka(self.cell_count + othery.cell_count)
+
+    def __sub__(self, othery):
+        return Kletka(self.cell_count - othery.cell_count) if self.cell_count > othery.cell_count else "Из меньшей клетки нельзя вычесть большую!"
+
+    def __mul__(self, othery):
+        return Kletka(self.cell_count * othery.cell_count)
+
+    def __truediv__(self, othery):
+        return Kletka(int(self.cell_count / othery.cell_count))
+
+    def make_order(self, cells_row):
+        rows_count, ostatok = divmod(self.cell_count, cells_row)
+        return (('*' * cells_row + '\n') * rows_count + ('*' * ostatok)).rstrip()
 
 def main():
     """Логика программы."""
+    k1 = Kletka(17)
+    k2 = Kletka(5)
+    k3 = Kletka(15)
 
+    print(f'''
+           "make_order" для клетки из 17 ячеек и 5 ячеек в строке:\n{k1.make_order(5)}
+           k1 = {k1.cell_count}, k2 = {k2.cell_count}, k3 = {k3.cell_count}:
+           k1 + k2 = {(k1 + k2).cell_count};
+           k1 * k2 = {(k1 * k2).cell_count};
+           k1 - k3 = {(k1 - k3).cell_count if type(k1 - k3) == Kletka else k1 - k3};
+           k3 - k1 = {(k3 - k1).cell_count if type(k3 - k1) == Kletka else k3 - k1};
+           k1 / k2 = {(k1 / k2).cell_count}''')
 
 if __name__ == '__main__':
     main()
